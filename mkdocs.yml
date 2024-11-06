@@ -1,0 +1,16 @@
+site_name: Graphical Model Generation Docs
+
+# visual
+theme:
+  name: "material"
+
+# order of pages of documentation
+# with name aliases
+nav:
+  - Installation: installation.md
+  - Usage Examples: usage_examples.md
+  - Reference: function_descriptions.md
+
+# to include functions docstrings into the documentation automatically
+plugins:
+  - mkdocstrings
