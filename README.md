@@ -43,6 +43,9 @@ The construction of graphical models is a fundamental task in probabilistic mode
 
 
 ## Documentation and test coverage
+
+Documentation available at [docs](https://intsystems.github.io/graphical-model-generation/)
+
 Documentation and test coverage badges can be updated automatically using [github actions](.github/workflows).
 
 Initially both of these workflows are disabled (but can be run via "Actions" page).

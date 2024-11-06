@@ -1,3 +1,12 @@
+"""Code for verticies extraction.
+
+The module contains the following functions:
+
+- `extract_one_edge_gpt` - Returns
+- `extract_all_edges` - Returns
+"""
+
+
 from openai import OpenAI, AsyncOpenAI
 from pydantic import BaseModel
 from enum import Enum
@@ -10,7 +19,7 @@ from langchain.schema import (
 )
 from langchain.prompts import PromptTemplate, HumanMessagePromptTemplate
 from openai import OpenAI, AsyncOpenAI
-from typing import List
+from typing import List, Tuple
 import json
 
 class ArrowEnum(str, Enum):
@@ -21,7 +30,7 @@ class ArrowEnum(str, Enum):
 class ArrowType(BaseModel):
     arrow_type: ArrowEnum
 
-def get_messages_for_edge_direction(descr: str, set_of_nodes: list[str], pair_of_nodes: tuple[str]) -> str:
+def get_messages_for_edge_direction(descr: str, set_of_nodes: List[str], pair_of_nodes: Tuple[str]) -> str:
 
     node_extraction_sys_message = '''
             ###ROLE###
