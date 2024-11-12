@@ -10,7 +10,7 @@ def read(file_path):
         return f.read()
 
 
-readme = read('../docs/source/index.md')
+readme = read('../docs/index.md')
 # clearing local versions
 # https://packaging.python.org/en/latest/specifications/version-specifiers/#version-specifiers
 requirements = '\n'.join(
@@ -19,12 +19,12 @@ requirements = '\n'.join(
 
 setup(
     # metadata
-    name='mylib',
+    name='GMG_lib',
     version=__version__,
     license='MIT',
     author='Greg Psoi',
     author_email="psoi.greg@gmail.com",
-    description='mylib, python package',
+    description='GMG_lib',
     long_description=readme,
     url='https://github.com/intsystems/SoftwareTemplate-simplified',
     # options
