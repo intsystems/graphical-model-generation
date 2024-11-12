@@ -57,16 +57,19 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # Navigate to the htmlcov directory and check for changes
-          cd htmlcov
+
+          # Create gh-pages branch if it doesn't exist or switch to it
+          git checkout -b gh-pages || git checkout gh-pages
+                    
+          # Copy all files from htmlcov to the current directory
+          cp -r htmlcov/* .  # Copy all HTML files from htmlcov to root of gh-pages
           
-          # Check if there are changes in the htmlcov directory (where HTML reports are generated)
-          # if [[ `git status --porcelain` ]]; then
-          git add index.html -f # Add all files in the htmlcov directory
-          git commit -m "Update coverage report"  # Commit changes
-          git push  # Push changes back to the main branch
-          # else
-          #   echo "No changes to commit."
-          # fi
-  
-  
+          # Add all changes
+          git add . -f  # Add all files in the current directory
+          
+          # Commit changes
+          git commit -m "Update coverage report" || echo "No changes to commit."
+          
+          # Push changes to gh-pages branch
+          git push origin gh-pages --force  # Force push in case of history divergence
+          
