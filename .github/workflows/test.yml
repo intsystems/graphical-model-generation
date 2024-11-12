@@ -41,16 +41,39 @@ jobs:
           PYTHONPATH=src/ sudo python -m pytest tests/ --cov=code --cov-report=xml
           pytest --cov=code --cov-report=html --cov-report=term-missing tests/  # Generate HTML report
 
-      - name: Upload Coverage Report to GitHub Pages
+      - name: Deploy Coverage Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .  # Directory where HTML report is generated
+          publish_dir: ./htmlcov  # Directory where HTML report is generated
+    
+
+      - name: Upload Coverage Report as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: ./coverage.xml  # Path to the XML coverage report
+
+      - name: Commit and push coverage report
+        run: |
+          # Configure git
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Check if there are changes in the htmlcov directory (where HTML reports are generated)
+          if [[ `git status --porcelain htmlcov` ]]; then
+            git add htmlcov  # Add the HTML coverage directory
+            git commit -m "Update coverage report"  # Commit changes
+            git push  # Push changes back to the repository
+          else
+            echo "No changes to commit."
+          fi
+
 
         
-      - name: Generate coverage badge
-        run: |
-          python src/badge_generator.py
+      # - name: Generate coverage badge
+      #   run: |
+      #     python src/badge_generator.py
 
       # - name: Commit coverage badge
       #   run: |
