@@ -38,7 +38,6 @@ jobs:
 
       - name: Testing
         run: |
-          PYTHONPATH=src/ sudo python -m pytest tests/ --cov=code --cov-report=xml
           pytest --cov=code --cov-report=html --cov-report=term-missing tests/  # Generate HTML report
 
       - name: Upload Coverage Report as Artifact
@@ -46,50 +45,23 @@ jobs:
         with:
           name: coverage-report
           path: htmlcov/  # Path to the HTML coverage report directory
-
-
-
-      - name: Deploy Coverage Report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./htmlcov  # Directory where HTML report is generated
     
-
-      
-
-      - name: Upload Coverage Report as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: ./coverage.xml  # Path to the XML coverage report
-
       - name: Commit and push coverage report
         run: |
           # Configure git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
+          # Navigate to the htmlcov directory and check for changes
+          cd htmlcov
+          
           # Check if there are changes in the htmlcov directory (where HTML reports are generated)
-          if [[ `git status --porcelain htmlcov` ]]; then
-            git add htmlcov  # Add the HTML coverage directory
+          if [[ `git status --porcelain` ]]; then
+            git add .  # Add all files in the htmlcov directory
             git commit -m "Update coverage report"  # Commit changes
-            git push  # Push changes back to the repository
+            git push origin main  # Push changes back to the main branch
           else
             echo "No changes to commit."
           fi
-
-
-        
-      # - name: Generate coverage badge
-      #   run: |
-      #     python src/badge_generator.py
-
-      # - name: Commit coverage badge
-      #   run: |
-      #     git add coverage-badge.svg
-      #     git commit -m "Update coverage badge"
-      #     git push
-
-      #     git config --global user.name 'github-actions[bot]'
-      #     git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+  
+  
