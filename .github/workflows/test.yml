@@ -62,9 +62,9 @@ jobs:
           
           # Check if there are changes in the htmlcov directory (where HTML reports are generated)
           # if [[ `git status --porcelain` ]]; then
-          git add .  # Add all files in the htmlcov directory
+          git add index.html # Add all files in the htmlcov directory
           git commit -m "Update coverage report"  # Commit changes
-          git push origin main  # Push changes back to the main branch
+          git push  # Push changes back to the main branch
           # else
           #   echo "No changes to commit."
           # fi
