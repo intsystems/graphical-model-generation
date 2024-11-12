@@ -2,8 +2,8 @@ name: test
 on:
   workflow_dispatch:
   # uncomment to make it runnable after each push into master
-  #push:
-  #  branches: [ master ]
+  push:
+   branches: [ master ]
   #pull_request:
   #  branches: [ master ]
   
