@@ -34,7 +34,8 @@ jobs:
           sudo pip install -U -r src/requirements.txt
           cd src; sudo pip install .
           sudo pip install pydantic
-          
+          sudo pip install openai
+
       - name: Testing
         run: |
           PYTHONPATH=src/ sudo python -m pytest tests/ --cov=mylib --cov-report=xml
