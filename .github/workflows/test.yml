@@ -46,6 +46,11 @@ jobs:
           name: coverage-report
           path: htmlcov/  # Path to the HTML coverage report directory
     
+
+      - name: List HTML Coverage Directory
+        run: |
+          ls -la htmlcov/
+
       - name: Commit and push coverage report
         run: |
           # Configure git
