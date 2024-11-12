@@ -38,7 +38,7 @@ jobs:
 
       - name: Testing
         run: |
-          pytest --cov=code --cov-report=html --cov-report=term-missing tests/  # Generate HTML report
+          pytest --cov=code --cov-report=xml --cov-report=html --cov-report=term-missing tests/  # Generate HTML report
 
       - name: Upload Coverage Report as Artifact
         uses: actions/upload-artifact@v4  # Updated to v4
@@ -46,11 +46,15 @@ jobs:
           name: coverage-report
           path: htmlcov/  # Path to the HTML coverage report directory
     
+      - name: Generate coverage badge
+        run: |
+          python src/badge_generator.py
+
 
       - name: List HTML Coverage Directory
         run: |
           ls -la htmlcov/
-
+      
       - name: Commit and push coverage report
         run: |
           # Configure git
@@ -69,7 +73,8 @@ jobs:
           
           # Copy all files from htmlcov to the coverage directory
           cp -r htmlcov/* coverage/  # Copy all HTML files from htmlcov to the new coverage directory
-          
+          cp coverage-badge.svg coverage/  # Copy the generated badge into the coverage directory
+
           # Add all changes
           git add * -f  # Add all files in the current directory
           
