@@ -9,10 +9,10 @@
 ::: code.NLI_node_extraction.extract_nodes_gpt
 
 ### Node distribution inference
-::: code.NLI_suggest_vertex_distribution
+::: code.NLI_suggest_node_distribution
 
 #### Edge extraction
-::: code.NLI_extract_vertices
+::: code.NLI_extract_edges
 
 
 
@@ -25,7 +25,7 @@
 - **Returns**: A tuple representing the directed edge or (None, None) if no direction is found.
 
 ::: code.graph_utils
-<!-- ::: GMG.NLI_extract_verticies.get_messages_for_edge_direction -->
+<!-- ::: GMG.NLI_extract_edges.get_messages_for_edge_direction -->
 <!-- .extract_one_edge_gpt -->
 
 
