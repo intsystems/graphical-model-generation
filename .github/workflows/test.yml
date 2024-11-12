@@ -60,16 +60,21 @@ jobs:
 
           # Create gh-pages branch if it doesn't exist or switch to it
           git checkout -b gh-pages || git checkout gh-pages
-                    
-          # Copy all files from htmlcov to the current directory
-          cp -r htmlcov/* .  # Copy all HTML files from htmlcov to root of gh-pages
+          
+
+          rm -rf coverage
+        
+          # Create a new directory for coverage reports
+          mkdir coverage
+          
+          # Copy all files from htmlcov to the coverage directory
+          cp -r htmlcov/* coverage/  # Copy all HTML files from htmlcov to the new coverage directory
           
           # Add all changes
-          git add . -f  # Add all files in the current directory
+          git add * -f  # Add all files in the current directory
           
           # Commit changes
           git commit -m "Update coverage report" || echo "No changes to commit."
           
           # Push changes to gh-pages branch
           git push origin gh-pages --force  # Force push in case of history divergence
-          
