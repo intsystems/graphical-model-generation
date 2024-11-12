@@ -6,13 +6,13 @@
 ::: code.graph_utils
 
 ### Node extraction
-::: code.NLI_node_extraction.extract_nodes_gpt
+::: code.NLI_node_extraction.NodeExtractor
 
 ### Node distribution inference
-::: code.NLI_suggest_node_distribution
+::: code.NLI_suggest_node_distribution.NodeDistributer
 
 #### Edge extraction
-::: code.NLI_extract_edges
+::: code.NLI_extract_edges.EdgeExtractor
 
 
 
