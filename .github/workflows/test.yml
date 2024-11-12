@@ -41,12 +41,22 @@ jobs:
           PYTHONPATH=src/ sudo python -m pytest tests/ --cov=code --cov-report=xml
           pytest --cov=code --cov-report=html --cov-report=term-missing tests/  # Generate HTML report
 
+      - name: Upload Coverage Report as Artifact
+        uses: actions/upload-artifact@v4  # Updated to v4
+        with:
+          name: coverage-report
+          path: htmlcov/  # Path to the HTML coverage report directory
+
+
+
       - name: Deploy Coverage Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./htmlcov  # Directory where HTML report is generated
     
+
+      
 
       - name: Upload Coverage Report as Artifact
         uses: actions/upload-artifact@v4
