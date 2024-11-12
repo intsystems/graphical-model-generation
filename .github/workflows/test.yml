@@ -39,7 +39,15 @@ jobs:
       - name: Testing
         run: |
           PYTHONPATH=src/ sudo python -m pytest tests/ --cov=code --cov-report=xml
-      
+          pytest --cov=code --cov-report=html --cov-report=term-missing tests/  # Generate HTML report
+
+      - name: Upload Coverage Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .  # Directory where HTML report is generated
+
+        
       - name: Generate coverage badge
         run: |
           python src/badge_generator.py
