@@ -49,7 +49,7 @@ jobs:
     
 
       - name: Upload Coverage Report as Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: ./coverage.xml  # Path to the XML coverage report
