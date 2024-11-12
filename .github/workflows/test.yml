@@ -33,6 +33,7 @@ jobs:
         run: |    
           sudo pip install -U -r src/requirements.txt
           cd src; sudo pip install .
+          sudo pip install pydantic
           
       - name: Testing
         run: |
