@@ -36,7 +36,7 @@ class NodeDistributer(BaseExtractior):
             Returns:
                 tuple[dict, dict]: A tuple containing system and user messages formatted for the API request.
         """   
-        messages = [
+        messages = (
             {
                 'role': 'system',
                 'content': node_extraction_sys_message
@@ -45,7 +45,7 @@ class NodeDistributer(BaseExtractior):
                 'role': 'user',
                 'content': node_distribution_str_template.format(description=description, node_name=node_name)
             }
-        ]
+        )
 
         return messages
 
