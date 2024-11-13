@@ -63,7 +63,7 @@ class TestEdgeExtractor(unittest.TestCase):
                        return_value=['some messages'])
     def test_extract_one_edge_gpt(self, mock_get_messages, mock_completion):
         call_args = {
-            'description': 'description',
+            'descripticleacon': 'description',
             'set_of_nodes': ['a', 'b'],
             'pair_of_nodes': ('a', 'b'),
             'gpt_model': 'gpt-4o-mini',
