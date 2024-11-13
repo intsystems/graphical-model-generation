@@ -64,7 +64,7 @@ class EdgeExtractor(BaseExtractior):
                 tuple[dict, dict]: A tuple containing system and user messages formatted for the API request.
         """  
 
-        messages = [
+        messages = (
             {
                 'role': 'system',
                 'content': node_extraction_sys_message
@@ -73,7 +73,7 @@ class EdgeExtractor(BaseExtractior):
                 'role': 'user',
                 'content': edge_extraction_str_template.format(description=description, set_of_nodes=set_of_nodes, pair_of_nodes=pair_of_nodes)
             }
-        ]
+        )
 
         return messages
 

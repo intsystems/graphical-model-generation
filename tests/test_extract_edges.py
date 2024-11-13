@@ -7,17 +7,22 @@ from unittest.mock import MagicMock
 # Add the code directory to the system path to import modules from it
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../code')))
 
-import NLI_node_extraction
-from NLI_node_extraction import NodeExtractor
+import NLI_extract_edges
+from NLI_extract_edges import EdgeExtractor
 
-class TestNodeExtractor(unittest.TestCase):
+
+class TestEdgeExtractor(unittest.TestCase):
 
     @classmethod
     def setUpClass(self) -> None:
-        self.node_extractor = NodeExtractor(MagicMock())
+        self.edge_extractor = EdgeExtractor(MagicMock())
 
     def test_get_mess_type(self):
-        messs = self.node_extractor._get_messages_for_node_extraction("desr")
+        messs = self.edge_extractor._get_messages_for_edge_direction(
+            "desr",
+            ['a'],
+            ('a', 'a')
+        )
         
         # check number of messages
         self.assertEqual(len(messs), 2)
@@ -30,59 +35,76 @@ class TestNodeExtractor(unittest.TestCase):
         # check keys of messages
         self.assertEqual(set(messs[0].keys()), set(('role', 'content')), "wrong keys in messages")
 
-    @mock.patch('NLI_node_extraction.node_extraction_sys_message', "You are assistant.")
-    @mock.patch('NLI_node_extraction.node_extraction_str_template', "Extract nodes: {description}")
+    @mock.patch('NLI_extract_edges.node_extraction_sys_message', "You are assistant.")
+    @mock.patch('NLI_extract_edges.edge_extraction_str_template', "Description: {description}, set_of_nodes: {set_of_nodes}, pair_of_nodes: {pair_of_nodes}")
     def test_get_mess_text(self):
 
         description = "my_description"
-        messages = self.node_extractor._get_messages_for_node_extraction(description)
+        format_dict = {
+            'description': 'my_description',
+            'set_of_nodes': ['a', 'b'],
+            'pair_of_nodes': ('a', 'b')
+        }
+        
+        messages = self.edge_extractor._get_messages_for_edge_direction(**format_dict)
         value = (
-            {'role': 'system', 'content': NLI_node_extraction.node_extraction_sys_message},
-            {'role': 'user', 'content': NLI_node_extraction.node_extraction_str_template.format(description=description)}
+            {'role': 'system', 'content': NLI_extract_edges.node_extraction_sys_message},
+            {'role': 'user', 'content': NLI_extract_edges.edge_extraction_str_template.format(**format_dict)}
         )
 
 
         self.assertEqual(value, messages, f"Wrong message formation!\nmessage:{messages}\nshould be: {value}")
 
     
-    @mock.patch.object(NodeExtractor, 
-                       '_get_completion_parsed_result', 
-                       return_value=['a', 'b', 'c'])
-    @mock.patch.object(NodeExtractor,
-                       '_get_messages_for_node_extraction',
+    @mock.patch.object(EdgeExtractor, 
+                       '_get_completion_parsed_result')
+    @mock.patch.object(EdgeExtractor,
+                       '_get_messages_for_edge_direction',
                        return_value=['some messages'])
-    @mock.patch('NLI_node_extraction.Nodes', list)
-    def test_extract_nodes_gpt(self, mock_get_messages, mock_completion):
+    def test_extract_one_edge_gpt(self, mock_get_messages, mock_completion):
         call_args = {
             'description': 'description',
+            'set_of_nodes': ['a', 'b'],
+            'pair_of_nodes': ('a', 'b'),
             'gpt_model': 'gpt-4o-mini',
             'temperature': 0.0
         }
 
-        # obj = NodeExtractor("no")
-        result = self.node_extractor.extract_nodes_gpt(**call_args)
-
-        self.assertEqual(result, ['a', 'b', 'c'])
+        # test on forward
+        mock_completion.return_value = 'forward'
+        result = self.edge_extractor._extract_one_edge_gpt(**call_args)
+        self.assertEqual(result, ('a', 'b'))
         
+        # test on backward
+        mock_completion.return_value = 'backward'
+        result = self.edge_extractor._extract_one_edge_gpt(**call_args)
+        self.assertEqual(result, ('b', 'a'))
+
+        # test on NO edge
+        mock_completion.return_value = 'no'
+        result = self.edge_extractor._extract_one_edge_gpt(**call_args)
+        self.assertEqual(result, (None, None))
+
+        # test on inside call
         inside_call_args = {
             'model': 'gpt-4o-mini',
             'temperature': 0.0,
             'messages': ['some messages'],
-            'response_format': list,
-            'key': 'list_of_nodes'
+            'response_format': NLI_extract_edges.ArrowType,
+            'key': 'arrow_type'
         }
-        mock_completion.assert_called_once_with(**inside_call_args)
+        mock_completion.assert_called_with(**inside_call_args)
 
 
     def test_init(self):
         mock_client = MagicMock()
-        mock_node_extractor = NodeExtractor(mock_client)
+        mock_node_extractor = EdgeExtractor(mock_client)
 
         self.assertEqual(mock_node_extractor.openai_client, mock_client)
 
     @classmethod
     def tearDownClass(self) -> None:
-        del self.node_extractor
+        del self.edge_extractor
 
 if __name__ == 'main':
     unittest.main()
