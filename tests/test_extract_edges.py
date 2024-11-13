@@ -94,9 +94,9 @@ class TestEdgeExtractor(unittest.TestCase):
         mock_completion.assert_called_with(**inside_call_args)
 
 
-    @mock.patch('NLI_extract_edges.EdgeExtractor._extract_one_edge_gpt', MagicMock(return_value=(None, None)))
+    @mock.patch('NLI_extract_edges.EdgeExtractor._extract_one_edge_gpt', MagicMock(return_value=('a', 'a')))
     @mock.patch('builtins.print', MagicMock(return_value='None'))
-    def test_extract_all_edge_gpt(self):
+    def test_extract_all_edges_gpt(self):
         call_args = {
             'description': 'description',
             'set_of_nodes': ['a', 'b'],
@@ -106,7 +106,7 @@ class TestEdgeExtractor(unittest.TestCase):
         }
 
         result = self.edge_extractor.extract_all_edges(**call_args)
-        self.assertEqual(result, [])
+        self.assertEqual(result, [('a', 'a')])
         
 
     def test_init(self):

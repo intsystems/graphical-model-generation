@@ -121,7 +121,7 @@ class EdgeExtractor(BaseExtractior):
                                 gpt_model: str = 'gpt-4o-mini',
                                 temperature: float = 0,
                                 verbose=False
-    ) -> tuple[str|None, str|None]:
+    ) -> list[tuple[str|None, str|None]]:
         """
             Extracts all possible edges from a set of nodes based on a given description.
 
