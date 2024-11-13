@@ -58,10 +58,8 @@ class TestEdgeExtractor(unittest.TestCase):
     
     @mock.patch.object(EdgeExtractor, 
                        '_get_completion_parsed_result')
-    @mock.patch.object(EdgeExtractor,
-                       '_get_messages_for_edge_direction',
-                       return_value=['some messages'])
-    def test_extract_one_edge_gpt(self, mock_get_messages, mock_completion):
+    @mock.patch('NLI_extract_edges.EdgeExtractor._get_messages_for_edge_direction', MagicMock(return_value=['some messages']))
+    def test_extract_one_edge_gpt(self, mock_completion):
         call_args = {
             'description': 'description',
             'set_of_nodes': ['a', 'b'],
@@ -95,6 +93,21 @@ class TestEdgeExtractor(unittest.TestCase):
         }
         mock_completion.assert_called_with(**inside_call_args)
 
+
+    @mock.patch('NLI_extract_edges.EdgeExtractor._extract_one_edge_gpt', MagicMock(return_value=(None, None)))
+    @mock.patch('builtins.print', MagicMock(return_value='None'))
+    def test_extract_all_edge_gpt(self):
+        call_args = {
+            'description': 'description',
+            'set_of_nodes': ['a', 'b'],
+            'gpt_model': 'gpt-4o-mini',
+            'temperature': 0.0,
+            'verbose': True,
+        }
+
+        result = self.edge_extractor.extract_all_edges(**call_args)
+        self.assertEqual(result, [])
+        
 
     def test_init(self):
         mock_client = MagicMock()
