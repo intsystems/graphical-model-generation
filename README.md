@@ -1,6 +1,6 @@
 # GMG_auto 
 ![Coverage Badge](https://intsystems.github.io/graphical-model-generation/coverage/coverage-badge.svg)
-[<img src="https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white">](https://intsystems.github.io/SoftwareTemplate-simplified)
+[<img src="https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white">](https://intsystems.github.io/graphical-model-generation/)
 
 ## Motivation
 The construction of graphical models is a fundamental task in probabilistic modeling and Bayesian networks. Traditionally, building these models requires expert knowledge to define variables, their relationships, and conditional dependencies. This process is often manual, time-consuming, and prone to human error. With the advent of Large Language Models (LLMs), there is an opportunity to automate this process by translating natural language descriptions directly into graphical models.
