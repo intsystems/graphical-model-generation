@@ -1,6 +1,5 @@
 # GMG_auto 
-
-[<img src="coverage-badge.svg">](https://github.com/intsystems/SoftwareTemplate-simplified/tree/master)
+![Coverage Badge](https://intsystems.github.io/graphical-model-generation/coverage/coverage-badge.svg)
 [<img src="https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white">](https://intsystems.github.io/SoftwareTemplate-simplified)
 
 ## Motivation
