@@ -1,32 +1,24 @@
 # API Reference
 
+## Classes
+
+### Base extractor
+::: code.NLI_base_extractor
+
+### Node extractor
+::: code.NLI_node_extraction
+
+### Edge extrctor
+::: code.NLI_extract_edges
+
+### Node distribution extractor
+::: code.NLI_suggest_node_distribution
+
+
 ## Functions
 
 ### Graph utils
 ::: code.graph_utils
-
-### Node extraction
-::: code.NLI_node_extraction.NodeExtractor
-
-### Node distribution inference
-::: code.NLI_suggest_node_distribution.NodeDistributer
-
-#### Edge extraction
-::: code.NLI_extract_edges.EdgeExtractor
-
-
-
-#### extract_one_edge_gpt(description: str, node1: str, node2: str) -> Tuple[Optional[str], Optional[str]]
-- **Description**: Extracts the direction of an edge between two nodes based on a description.
-- **Parameters**:
-  - description: A string describing the graph.
-  - node1: The first node.
-  - node2: The second node.
-- **Returns**: A tuple representing the directed edge or (None, None) if no direction is found.
-
-::: code.graph_utils
-<!-- ::: GMG.NLI_extract_edges.get_messages_for_edge_direction -->
-<!-- .extract_one_edge_gpt -->
 
 
 ## Asynchronous Operations

@@ -10,16 +10,30 @@ Welcome to the Natural Language Graph Model Extraction Library. This library all
 - Suggest vertex distributions based on node names and graph descriptions.
 - Supports asynchronous operations for efficient processing.
 
-## Commands (TO DO)
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
 
 ## Project layout (TO DO)
 
     mkdocs.yml    # The configuration file.
+
     docs/
         index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+        installation.md
+        usage_examplex.md
+        function_descriptions.md
+
+    code/
+        config.py
+        __init__.py
+        NLI_base_extractor.py
+        NLI_node_extractor.py
+        NLI_edge_extractor.py
+        NLI_suggest_node_distribution.py
+        graph_utils.py
+
+    tests/
+        test_base_extractor.py
+        test_extract_nodes.py
+        test_extract_edges.py
+        test_suggest_node_distr.py
+
+    
