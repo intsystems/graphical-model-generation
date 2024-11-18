@@ -8,18 +8,15 @@ The construction of graphical models is a fundamental task in probabilistic mode
 ## Example of a graphical model
 ![image](https://github.com/user-attachments/assets/3f969879-d342-4543-90fa-847c72d8f593)
 
+## Algo scheme
+![NLP](https://github.com/user-attachments/assets/d337f04b-0e15-4891-a40c-8325fd347ebf)
+
 
 ## Code structure
 ```
 ├── README.md # About the repo.
 ├── mkdocs.yml # The configuration file.
 ├── GMG_LLM_powered.pdf # Presentation of a project.
-│
-├── docs/ # Documentation files
-│ ├── index.md # The documentation homepage.
-│ ├── installation.md # Installation instructions.
-│ ├── usage_examples.md # Usage examples.
-│ └── function_descriptions.md # Descriptions of functions.
 │
 ├── code/ # Source code files
 │ ├── config.py # Configuration settings.
@@ -29,12 +26,18 @@ The construction of graphical models is a fundamental task in probabilistic mode
 │ ├── NLI_edge_extractor.py # Edge extractor for NLI.
 │ ├── NLI_suggest_node_distribution.py # Suggests node distribution for NLI.
 │ └── graph_utils.py # Utility functions for graph processing.
-│
+|
 ├── tests/ # Test files
 │ ├── test_base_extractor.py # Tests for base extractor functionality.
 │ ├── test_extract_nodes.py # Tests for node extraction functionality.
 │ ├── test_extract_edges.py # Tests for edge extraction functionality.
 │ └── test_suggest_node_distr.py # Tests for node distribution suggestions.
+|
+├── docs/ # Documentation files
+│ ├── index.md # The documentation homepage.
+│ ├── installation.md # Installation instructions.
+│ ├── usage_examples.md # Usage examples.
+│ └── function_descriptions.md # Descriptions of functions.
 │
 └── utils/ # Utility scripts and dependencies
 ├── requirements.txt # Project dependencies.
