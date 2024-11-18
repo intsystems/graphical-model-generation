@@ -4,6 +4,37 @@
 
 ## Motivation
 The construction of graphical models is a fundamental task in probabilistic modeling and Bayesian networks. Traditionally, building these models requires expert knowledge to define variables, their relationships, and conditional dependencies. This process is often manual, time-consuming, and prone to human error. With the advent of Large Language Models (LLMs), there is an opportunity to automate this process by translating natural language descriptions directly into graphical models.
+```
+├── README.md # About the repo.
+├── mkdocs.yml # The configuration file.
+├── GMG_LLM_powered.pdf # Presentation of a project.
+│
+├── docs/ # Documentation files
+│ ├── index.md # The documentation homepage.
+│ ├── installation.md # Installation instructions.
+│ ├── usage_examples.md # Usage examples.
+│ └── function_descriptions.md # Descriptions of functions.
+│
+├── code/ # Source code files
+│ ├── config.py # Configuration settings.
+│ ├── init.py # Package initialization.
+│ ├── NLI_base_extractor.py # Base extractor for NLI.
+│ ├── NLI_node_extractor.py # Node extractor for NLI.
+│ ├── NLI_edge_extractor.py # Edge extractor for NLI.
+│ ├── NLI_suggest_node_distribution.py # Suggests node distribution for NLI.
+│ └── graph_utils.py # Utility functions for graph processing.
+│
+├── tests/ # Test files
+│ ├── test_base_extractor.py # Tests for base extractor functionality.
+│ ├── test_extract_nodes.py # Tests for node extraction functionality.
+│ ├── test_extract_edges.py # Tests for edge extraction functionality.
+│ └── test_suggest_node_distr.py # Tests for node distribution suggestions.
+│
+└── utils/ # Utility scripts and dependencies
+├── requirements.txt # Project dependencies.
+└── badge_generator.py # Generates coverage button.
+```
+
 
 ## Algorithms to implement
 **NaturalLanguageInput Class** will have the following algorithms:
