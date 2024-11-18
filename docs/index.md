@@ -13,7 +13,9 @@ Welcome to the Natural Language Graph Model Extraction Library. This library all
 
 ## Project layout (TO DO)
 
-    mkdocs.yml    # The configuration file.
+    README.md             # About the repo.
+    mkdocs.yml            # The configuration file.
+    GMG_LLM_powered.pdf   # Presentation of a project.
 
     docs/
         index.md  # The documentation homepage.
