@@ -5,7 +5,6 @@
 ## Motivation
 The construction of graphical models is a fundamental task in probabilistic modeling and Bayesian networks. Traditionally, building these models requires expert knowledge to define variables, their relationships, and conditional dependencies. This process is often manual, time-consuming, and prone to human error. With the advent of Large Language Models (LLMs), there is an opportunity to automate this process by translating natural language descriptions directly into graphical models.
 
-
 ## Example of a graphical model
 ![image](https://github.com/user-attachments/assets/3f969879-d342-4543-90fa-847c72d8f593)
 
