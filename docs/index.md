@@ -39,3 +39,6 @@ Welcome to the Natural Language Graph Model Extraction Library. This library all
         test_suggest_node_distr.py
 
     
+    utils/
+        requirements.txt
+        badge_generator.py # generates coverage button

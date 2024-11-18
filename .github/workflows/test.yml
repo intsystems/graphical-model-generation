@@ -31,8 +31,7 @@ jobs:
         
       - name: Install Dependencies
         run: |    
-          sudo pip install -U -r src/requirements.txt
-          # cd src; sudo pip install .
+          sudo pip install -U -r utils/requirements.txt
           sudo pip install pydantic
           sudo pip install openai
 
@@ -48,7 +47,7 @@ jobs:
     
       - name: Generate coverage badge
         run: |
-          python src/badge_generator.py
+          python utils/badge_generator.py
 
 
       - name: List HTML Coverage Directory
