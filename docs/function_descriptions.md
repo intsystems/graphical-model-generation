@@ -18,7 +18,7 @@
 ## Functions
 
 ### Graph utils
-::: code.graph_utils
+::: code.graph_class
 
 
 ## Asynchronous Operations
