@@ -1,7 +1,10 @@
 from typing import Self
 from openai import OpenAI, AsyncOpenAI
 
-from NLI_node_extraction import NodeExtraction
+from NLI_node_extraction import NodeExtractor
+from NLI_extract_edges import EdgeExtractor
+from NLI_suggest_node_distribution import NodeDistributer
+from graph_class import GMG_graph
 
 class NaturalLanguageInput:
     """
@@ -27,5 +30,14 @@ class NaturalLanguageInput:
         self.descr = description
 
         # now initialize all extractors
-        self.node_exractor = NodeExtraction(self.openai_client)
-        
+        self.node_exractor = NodeExtractor(self.openai_client)
+        self.edge_extractor = EdgeExtractor(self.openai_client)
+        self.node_distributer = NodeDistributer(self.openai_client)
+
+
+    def construct_graph(self, gpt_model: str = 'gpt-4o-mini', temperature: float = 0) -> GMG_graph:
+        nodes = self.node_exractor.extract_nodes_gpt(self.descr, gpt_model, temperature)
+        edges = self.edge_extractor.extract_all_edges(self.descr, nodes, gpt_model, temperature)
+        node_distributions = self.node_distributer.suggest_vertex_distributions(self.descr, nodes, gpt_model, temperature)
+
+        return GMG_graph(nodes, edges, node_distributions)
