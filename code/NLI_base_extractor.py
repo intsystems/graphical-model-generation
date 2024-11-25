@@ -1,3 +1,4 @@
+import openai
 from openai import OpenAI, AsyncOpenAI
 import json
 
