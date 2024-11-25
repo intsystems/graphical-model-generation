@@ -11,7 +11,6 @@ The construction of graphical models is a fundamental task in probabilistic mode
 ## Algo scheme
 ![NLP](https://github.com/user-attachments/assets/d337f04b-0e15-4891-a40c-8325fd347ebf)
 
-
 ## Code structure
 ```
 ├── README.md # About the repo.
