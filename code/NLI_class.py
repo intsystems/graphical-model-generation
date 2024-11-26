@@ -16,7 +16,7 @@ class NaturalLanguageInput:
         self.descr = None
         self.openai_client = openai_client
 
-    def fit(self, description: str) -> Self:
+    def fit(self, description: str):
         """just saves the description of the graph
 
         Args:
