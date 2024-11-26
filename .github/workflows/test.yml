@@ -83,4 +83,4 @@ jobs:
           git commit -m "Update coverage report" || echo "No changes to commit."
           
           # Push changes to gh-pages branch
-          git push origin gh-pages --force  # Force push in case of history divergence
+          git push origin gh-pages # --force  # Force push in case of history divergence
