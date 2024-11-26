@@ -1,9 +1,9 @@
-'''Contains all text constants, used in the application.
-'''
+"""Contains all text constants, used in the application.
+"""
 
 ### Node extraction
 
-node_extraction_sys_message = '''
+node_extraction_sys_message = """
     ###ROLE###
     You are Graphical model scientist.
     You task is to extract information about DAG from text description.
@@ -11,9 +11,9 @@ node_extraction_sys_message = '''
     The presence of arrows or arcs seems to imply, at an intuitive level, that for each arc one variable should be interpreted as a cause and the other as an effect (e.g., A →E means that A causes E). This interpretation is called causal.
 
     For every right answer I give you 5$.
-'''
+"""
 
-node_extraction_str_template = '''
+node_extraction_str_template = """
     ###TASK###
     Extract all node names of GAD from the description, the user gaves you.
 
@@ -29,11 +29,11 @@ node_extraction_str_template = '''
 
     User: {description}
     Assistant:
-'''
+"""
 
 ### Edge extraction
 
-edge_extraction_str_template = '''
+edge_extraction_str_template = """
     ###TASK###
     You are given a DAG description, a set of its nodes and pair of nodes.
     You should infer from the description and you own knowledge the type of casuality between two given nodes:
@@ -79,10 +79,10 @@ edge_extraction_str_template = '''
         #PAIR OF NODES#: {pair_of_nodes}
 
     Assistant:
-'''
+"""
 
 ### Edge direction
-node_distribution_str_template = '''
+node_distribution_str_template = """
     ###TASK###
     You are given the graph description and name of its node.
     Depending on node name and description of graph, choose what types of values can the node take.
@@ -97,4 +97,4 @@ node_distribution_str_template = '''
     GRAPH DESCRIPTION: {description}
     NODE NAME: {node_name}
     ASSISTANT: 
-'''
+"""
