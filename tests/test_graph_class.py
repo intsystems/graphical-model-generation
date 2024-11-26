@@ -32,7 +32,7 @@ class TestGraphClass(unittest.TestCase):
         self.assertEqual(self.G.node_distrs, self.node_distrs)
 
     @mock.patch(
-        "graph_class.Ipython.display.Image",
+        "Ipython.display.Image",
         MagicMock(return_value=["mess"]),
     )
     def test_visualize(self):
