@@ -35,6 +35,7 @@ jobs:
           sudo pip install pydantic
           sudo pip install openai
           sudo pip install pgmpy
+          sudo pip install ipython
 
       - name: Testing
         run: |
