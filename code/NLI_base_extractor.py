@@ -2,27 +2,26 @@ import openai
 from openai import OpenAI, AsyncOpenAI
 import json
 
+
 class BaseExtractior:
     """
-        A class to handle any extraction using OpenAI's GPT models.
+    A class to handle any extraction using OpenAI's GPT models.
     """
 
-    def __init__(self, openai_client: OpenAI|AsyncOpenAI) -> None:
+    def __init__(self, openai_client: OpenAI | AsyncOpenAI) -> None:
         """
-            Initializes the BaseExtractior with an OpenAI client.
+        Initializes the BaseExtractior with an OpenAI client.
 
-            Args:
-                openai_client (OpenAI | AsyncOpenAI): An instance of OpenAI or AsyncOpenAI client to interact with the API.
+        Args:
+            openai_client (OpenAI | AsyncOpenAI): An instance of OpenAI or AsyncOpenAI client to interact with the API.
         """
         self.openai_client = openai_client
         self.is_async = False
         if isinstance(self.openai_client, AsyncOpenAI):
             self.is_async = True
 
-    def _get_completion_result(self,
-                                model,
-                                messages: list[dict],
-                                temperature: float
+    def _get_completion_result(
+        self, model, messages: list[dict], temperature: float
     ) -> str:
 
         completion = self.openai_client.chat.completions.create(
@@ -32,14 +31,10 @@ class BaseExtractior:
         )
 
         return completion.choices[0].message.content
-    
 
-    def _get_completion_parsed_result(self,
-                                    model,
-                                    messages: list[dict],
-                                    response_format,
-                                    temperature: float,
-                                    key: str):
+    def _get_completion_parsed_result(
+        self, model, messages: list[dict], response_format, temperature: float, key: str
+    ):
 
         completion = self.openai_client.beta.chat.completions.parse(
             model=model,
