@@ -1,4 +1,3 @@
-from typing import Self
 from openai import OpenAI, AsyncOpenAI
 
 from NLI_node_extraction import NodeExtractor
