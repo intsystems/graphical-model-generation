@@ -15,21 +15,21 @@ class TestGraphClass(unittest.TestCase):
 
     @classmethod
     def setUpClass(self) -> None:
-        nodes = ["a", "b", "c"]
-        edges = [
+        self.nodes = ["a", "b", "c"]
+        self.edges = [
             ("a", "b"),
             ("b", "c"),
             ("a", "c"),
         ]
 
-        node_distrs = ["categorical", "binary", "continious"]
+        self.node_distrs = ["categorical", "binary", "continious"]
 
-        self.G = GMG_graph(nodes, edges, node_distrs)
+        self.G = GMG_graph(self.nodes, self.edges, self.node_distrs)
 
     def test_init(self):
-        self.assertEqual(self.G.nodes, nodes)
-        self.assertEqual(self.G.edges, edges)
-        self.assertEqual(self.G.node_distrs, node_distrs)
+        self.assertEqual(self.G.nodes, self.nodes)
+        self.assertEqual(self.G.edges, self.edges)
+        self.assertEqual(self.G.node_distrs, self.node_distrs)
 
     @mock.patch(
         "graph_class.Ipython.display.Image",

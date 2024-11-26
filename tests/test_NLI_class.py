@@ -42,7 +42,7 @@ class TestNLIClass(unittest.TestCase):
         "NLI_class.EdgeExtractor.extract_all_edges",
         MagicMock(return_value=([])),
     )
-    @mock.patch(
+    @mock.patch.object(
         "NLI_class.NodeDistributer.suggest_vertex_distributions",
         MagicMock(return_value=(['binary'])),
     )
@@ -50,7 +50,7 @@ class TestNLIClass(unittest.TestCase):
         "NLI_class.GMG_graph",
         MagicMock(return_value=('graph created')),
     )
-    def test_construct_graph(self, gmg_gr, node_distr, edge_extr, node_extr):
+    def test_construct_graph(self, node_distr):
 
         res = self.nli.construct_graph()
 
