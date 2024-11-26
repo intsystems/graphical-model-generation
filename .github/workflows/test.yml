@@ -34,6 +34,7 @@ jobs:
           sudo pip install -U -r utils/requirements.txt
           sudo pip install pydantic
           sudo pip install openai
+          # sudo pip install pgmpy
 
       - name: Testing
         run: |
